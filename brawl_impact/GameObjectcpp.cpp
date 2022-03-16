@@ -11,7 +11,6 @@ void GameObject::Update()
 {
 	xpos++;
 	ypos++;
-
 	srcRect.h = 120;
 	srcRect.w = 120;
 	srcRect.x = 0;
@@ -22,6 +21,10 @@ void GameObject::Update()
 	destRect.w = 120;
 	destRect.h = 120;
 
+}
+void GameObject::jump()
+{
+	ypos -= 16;
 }
 
 void GameObject::Render()

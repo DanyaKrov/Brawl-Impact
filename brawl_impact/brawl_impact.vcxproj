@@ -145,7 +145,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="brawl_impact.cpp" />
-    <ClCompile Include="ECS.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjectcpp.cpp" />
     <ClCompile Include="Map.cpp" />

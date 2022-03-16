@@ -8,6 +8,7 @@ public:
 	
 	void Update();
 	void Render();
+	void jump();
 private:
 	int xpos, ypos;
 

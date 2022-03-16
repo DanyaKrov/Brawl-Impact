@@ -30,7 +30,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 	else
 		isRunning = false;
-	hero = new GameObject("brawl_stars/hero.png", 0, 0); //player
+	hero = new GameObject("morgenshtern/frames/frame_0.png", 0, 0); //player
 	map = new Map();
 }
 
@@ -48,6 +48,8 @@ void Game::handleEvevents()
 void Game::update()
 {
 	count++;
+	if (GetKeyState(VK_SPACE) & 0x8000)
+		hero->jump();
 	hero->Update();
 }
 
