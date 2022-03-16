@@ -22,7 +22,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		if (window) {
 
 		}
-		renderer = SDL_CreateRenderer(window, -1, 0);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		if (renderer) {
 			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		}
@@ -30,7 +30,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 	else
 		isRunning = false;
-	hero = new GameObject("morgenshtern/frames/frame_0.png", 0, 0); //player
+	hero = new GameObject("morgenshtern/frames/frame_0.png", 0, 0, false, false); //player
 	map = new Map();
 }
 
@@ -43,13 +43,13 @@ void Game::handleEvevents()
 		isRunning = false;
 		break;
 	}
+	if (GetKeyState(VK_SPACE) & 0x8000)
+		hero->jump();
 }
 
 void Game::update()
 {
 	count++;
-	if (GetKeyState(VK_SPACE) & 0x8000)
-		hero->jump();
 	hero->Update();
 }
 
