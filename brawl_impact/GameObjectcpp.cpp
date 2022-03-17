@@ -56,6 +56,10 @@ void GameObject::Update()
 		}
 
 	}
+	check_collision();
+}
+void GameObject::check_collision() {
+
 }
 void GameObject::jump()
 {

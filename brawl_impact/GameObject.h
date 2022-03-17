@@ -9,6 +9,7 @@ public:
 	void Update();
 	void Render();
 	void jump();
+	void check_collision();
 private:
 	int xpos, ypos;
 	bool isX_const, isY_const;

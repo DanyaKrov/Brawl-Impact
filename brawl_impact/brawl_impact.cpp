@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 	Uint32 frameStart;
 	int frametime;
 	game = new Game();
-	game->init("Brawl-Impact", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 640, false);
+	game->init("Brawl-Impact", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 2048, 1084, false);
 	while (game->running()) {
 		frameStart = SDL_GetTicks();
 		game->handleEvevents();
