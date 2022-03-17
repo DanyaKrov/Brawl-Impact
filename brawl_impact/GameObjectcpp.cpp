@@ -9,7 +9,6 @@ GameObject::GameObject(const char* texturesheet, int x, int y, bool isX_const, b
 	int step = 0;
 	int count = 0;
 
-	int speed;
 
 
 	int currentTime = 0, lastTime = 0, startTime = 0;
@@ -24,7 +23,7 @@ void GameObject::Update()
 	if (!isX_const)
 		xpos++;
 	if (!isY_const && isFall)
-		ypos++;
+		ypos += boost * (currentTime - startTime);
 	srcRect.h = 120;
 	srcRect.w = 120;
 	srcRect.x = 0;
@@ -43,18 +42,17 @@ void GameObject::Update()
 		}
 	}
 	else if (isJump) {
-		xpos += sin(60 * 3.14 / 180.0);
-		ypos -= cos(60 * 3.14 / 180.0);
-		ypos += boost * (currentTime - startTime);
+		ypos -= sin(60 * 3.14 / 180.0) * speed;
 		if (currentTime - lastTime == 1) {
 			lastTime = round(SDL_GetTicks() / 1000);
-			step++;
+			step--;
 			count++;
 		}
 		if (count == 2) {
 			count = 0;
 			isJump = false;
 			isFall = true;
+			step = -2;
 		}
 
 	}
@@ -65,8 +63,10 @@ void GameObject::jump()
 		startTime = round(SDL_GetTicks() / 1000);
 		lastTime = round(SDL_GetTicks() / 1000);
 		ypos -= 4;
+		currentTime = startTime;
 		isFall = false;
 		isJump = true;
+		step = 4;
 	}
 }
 

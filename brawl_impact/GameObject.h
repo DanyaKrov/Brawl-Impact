@@ -24,7 +24,7 @@ private:
 	int step, count;
 
 	//some physics
-	int speed;
-	int boost;
+	int speed = 1.5;
 	int time;
+	int boost = 1;
 };
