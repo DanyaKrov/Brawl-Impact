@@ -20,5 +20,11 @@ private:
 
 	vector<string*> textures;
 
-	int currentTime, lastTime;
+	int currentTime, lastTime, startTime;
+	int step, count;
+
+	//some physics
+	int speed;
+	int boost;
+	int time;
 };
