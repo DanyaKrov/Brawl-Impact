@@ -7,13 +7,12 @@ class Map {
 public:
 	Map();
 	~Map();
-	void LoadMap(int arr[20][20]);
+	void LoadMap(int arr[11][20]);
 	void DrawMap();
 private:
-	SDL_Rect src, dest;
-	SDL_Texture* ground;
-	SDL_Texture* sky;
-	SDL_Texture* cactus;
+	SDL_Rect src, dest, bar_src, bar_dest;
+	SDL_Texture* mainText;
+	SDL_Texture* barrier;
 
 	int map[20][20];
 };
