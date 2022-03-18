@@ -28,4 +28,5 @@ private:
 	int speed = 1.5;
 	int time;
 	int boost = 1;
+	int coef = 1;
 };

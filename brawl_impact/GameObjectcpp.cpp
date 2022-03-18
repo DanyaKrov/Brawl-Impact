@@ -9,7 +9,15 @@ GameObject::GameObject(const char* texturesheet, int x, int y, bool isX_const, b
 	int step = 0;
 	int count = 0;
 
+	int coef = 1;
 
+	srcRect.h = 120;
+	srcRect.w = 120;
+	srcRect.x = 0;
+	srcRect.y = 0;
+
+	destRect.w = 120;
+	destRect.h = 120;
 
 	int currentTime = 0, lastTime = 0, startTime = 0;
 	vector<string > textures = {"morgenshtern/frames/frame_-4.png", "morgenshtern/frames/frame_-3.png",
@@ -19,20 +27,13 @@ GameObject::GameObject(const char* texturesheet, int x, int y, bool isX_const, b
 }
 void GameObject::Update()
 {
-	currentTime = round(SDL_GetTicks() / 1000);
-	if (!isX_const)
-		xpos++;
-	if (!isY_const && isFall)
-		ypos += boost * (currentTime - startTime);
-	srcRect.h = 120;
-	srcRect.w = 120;
-	srcRect.x = 0;
-	srcRect.y = 0;
-
 	destRect.x = xpos;
 	destRect.y = ypos;
-	destRect.w = 120;
-	destRect.h = 120;
+	currentTime = round(SDL_GetTicks() / 1000);
+	if (!isX_const)
+		xpos += 3;
+	if (!isY_const && isFall)
+		ypos += 5 * coef;
 	if (isFall) {
 		if (step > -4) {
 			if (currentTime - lastTime == 1) {
@@ -42,7 +43,6 @@ void GameObject::Update()
 		}
 	}
 	else if (isJump) {
-		ypos -= sin(60 * 3.14 / 180.0) * speed;
 		if (currentTime - lastTime == 1) {
 			lastTime = round(SDL_GetTicks() / 1000);
 			step--;
@@ -56,6 +56,14 @@ void GameObject::Update()
 		}
 
 	}
+	if (xpos > 2080 || ypos > 1084 || xpos < 0 || ypos < 0) {
+		xpos = 0;
+		ypos = 0;
+		isFall = true;
+		isJump = false;
+		step = 0;
+		count = 0;
+	}
 	check_collision();
 }
 void GameObject::check_collision() {
@@ -66,7 +74,7 @@ void GameObject::jump()
 	if (!isY_const && isFall) {
 		startTime = round(SDL_GetTicks() / 1000);
 		lastTime = round(SDL_GetTicks() / 1000);
-		ypos -= 4;
+		coef *= -1;
 		currentTime = startTime;
 		isFall = false;
 		isJump = true;
