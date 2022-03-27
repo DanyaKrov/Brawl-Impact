@@ -24,7 +24,7 @@
     <ClCompile Include="TetxureManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectcpp.cpp">
+    <ClCompile Include="GameObject.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
