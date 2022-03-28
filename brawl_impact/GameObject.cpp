@@ -77,6 +77,7 @@ void GameObject::check_collision() {
 		level1[(ypos - 102) / 102][xpos / 102] == 1) {
 		xpos = 0;
 		ypos = 0;
+
 	}
 
 }

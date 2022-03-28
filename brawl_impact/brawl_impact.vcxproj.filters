@@ -50,10 +50,10 @@
     <ClInclude Include="Map.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ECS.h">
+    <ClInclude Include="Player.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="main_menu.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

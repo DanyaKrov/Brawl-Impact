@@ -6,7 +6,6 @@
 class Map {
 public:
 	Map();
-	~Map();
 	void LoadMap(int arr[11][20]);
 	void DrawMap();
 private:
