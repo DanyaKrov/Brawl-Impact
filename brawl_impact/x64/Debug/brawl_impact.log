@@ -1,9 +1,2 @@
-﻿  GameObjectcpp.cpp
-C:\Users\uchenik\Desktop\brawl_impact\GameObject.h(27,14): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-C:\Users\uchenik\Desktop\brawl_impact\GameObjectcpp.cpp(22,21): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-C:\Users\uchenik\Desktop\brawl_impact\GameObjectcpp.cpp(39,21): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-C:\Users\uchenik\Desktop\brawl_impact\GameObjectcpp.cpp(45,34): warning C4244: -=: преобразование "double" в "int", возможна потеря данных
-C:\Users\uchenik\Desktop\brawl_impact\GameObjectcpp.cpp(47,20): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-C:\Users\uchenik\Desktop\brawl_impact\GameObjectcpp.cpp(63,20): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-C:\Users\uchenik\Desktop\brawl_impact\GameObjectcpp.cpp(64,19): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-  brawl_impact.vcxproj -> C:\Users\uchenik\Desktop\brawl_impact\x64\Debug\brawl_impact.exe
+﻿  Menu.cpp
+  brawl_impact.vcxproj -> C:\Users\Danya\Desktop\brawl_impact\x64\Debug\brawl_impact.exe

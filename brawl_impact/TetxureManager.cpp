@@ -7,5 +7,5 @@ SDL_Texture* TextureManager::LoadTexture(const char* texture)
 	return tex;
 }
 void TextureManager::Draw(SDL_Texture* tex, SDL_Rect src, SDL_Rect dest) {
-	SDL_RenderCopy(Game::renderer, tex, &src, &dest);
+	SDL_RenderCopy(Menu::renderer1, tex, &src, &dest);
 }
