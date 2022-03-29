@@ -22,8 +22,8 @@ public:
 
 	void main_menu();
 
-	static SDL_Renderer *renderer;
-	bool running() {return isRunning;};
+	static SDL_Renderer* renderer;
+	bool running() { return isRunning; };
 private:
 	bool inMenu = TRUE;
 	int level = 0;

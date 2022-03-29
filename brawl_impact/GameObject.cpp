@@ -12,7 +12,6 @@ GameObject::GameObject(const char* texturesheet, int x, int y, bool isX_const, b
 	ypos = y;
 	int step = 0;
 	int count = 0;
-
 	int coef = 1;
 
 	srcRect.h = 120;
@@ -29,15 +28,18 @@ GameObject::GameObject(const char* texturesheet, int x, int y, bool isX_const, b
 	"morgenshtern/frames/frame_1.png", "morgenshtern/frames/frame_2.png", "morgenshtern/frames/frame_3.png",
 	"morgenshtern/frames/frame_4.png" };
 }
+
 void GameObject::Update()
 {
 	destRect.x = xpos;
 	destRect.y = ypos;
 	currentTime = round(SDL_GetTicks() / 1000);
-	if (!isX_const)
-		xpos += 3;
-	if (!isY_const && isFall)
-		ypos += 5 * coef;
+	if (!isX_const) {
+		xpos += x_speed;
+	}
+	if (!isY_const && isFall) {
+		ypos += y_speed * coef;
+	}
 	if (isFall) {
 		if (step > -4) {
 			if (currentTime - lastTime == 1) {
@@ -61,26 +63,24 @@ void GameObject::Update()
 
 	}
 	if (xpos > 2080 || ypos > 1084 || xpos < 0 || ypos < 0) {
-		xpos = 0;
-		ypos = 0;
-		isFall = true;
-		isJump = false;
-		step = 0;
-		count = 0;
+		is_dead = true;
 	}
 	check_collision();
+	if (is_dead) {
+		x_speed = 0;
+		y_speed = 0;
+	}
 }
+
 void GameObject::check_collision() {
 	if (level1[ypos / 102][(xpos + 102) / 102] == 1 or
 		level1[(ypos + 102) / 102][xpos / 102] == 1 or
 		level1[(ypos + 102) / 102][(xpos + 102) / 102] == 1 or
 		level1[(ypos - 102) / 102][xpos / 102] == 1) {
-		xpos = 0;
-		ypos = 0;
-
+		is_dead = true;
 	}
-
 }
+
 void GameObject::jump()
 {
 	if (!isY_const && isFall) {

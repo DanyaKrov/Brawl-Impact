@@ -10,6 +10,7 @@ public:
 	void Render();
 	void jump();
 	void check_collision();
+	void restart();
 	int level1[11][20] = {
 {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
 {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
@@ -28,6 +29,7 @@ private:
 	bool isX_const, isY_const;
 	bool isFall = true;
 	bool isJump = false;
+	bool is_dead = false;
 
 	SDL_Texture* objTexture;
 	SDL_Rect srcRect, destRect;
@@ -38,7 +40,8 @@ private:
 	int step, count;
 
 	//some physics
-	int speed = 1.5;
+	int x_speed = 3;
+	int y_speed = 5;
 	int time;
 	int boost = 1;
 	int coef = 1;

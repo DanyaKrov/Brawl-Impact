@@ -3,7 +3,6 @@
 #include "GameObject.h"
 #include "Map.h"
 
-
 GameObject* hero;
 SDL_Renderer* Game::renderer = nullptr;
 Map* map;
@@ -35,15 +34,6 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	hero = new GameObject("morgenshtern/frames/frame_0.png", 0, 0, false, false); //player
 	map = new Map();
 	menu = new Menu();
-
-
-
-	//music
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-	srand(time(0));
-	Mix_Music* music[] = { Mix_LoadMUS("music/caddilac.wav"), Mix_LoadMUS("music/tchaikovsky_piano_concerto_1.wav"),
-	Mix_LoadMUS("music/never_gonna.wav") };
-	Mix_PlayMusic(music[rand() % 3], -1);
 }
 
 void Game::handleEvevents()
@@ -54,15 +44,22 @@ void Game::handleEvevents()
 	case SDL_QUIT:
 		isRunning = false;
 		break;
+
+	case SDL_KEYDOWN:
+		switch (event.key.keysym.sym) {
+		case SDLK_SPACE:
+			hero->jump();
+			break;
+		case SDLK_r:
+			hero->restart();
+			break;
+		}
 	}
-	if (!inMenu && GetKeyState(VK_SPACE) & 0x8000)
-		hero->jump();
-	if (inMenu && event.type == SDL_MOUSEBUTTONDOWN) {
+	if (inMenu && event.type == SDL_MOUSEBUTTONDOWN) 
 		inMenu = menu->Click(event.motion.x, event.motion.y);
-	}
 }
 
-void Game::update()
+void Game::update() 
 {
 	if (!inMenu) {
 		count++;
@@ -89,5 +86,4 @@ void Game::clean()
 	Mix_CloseAudio();
 	SDL_Quit();
 	cout << "Game cleaned" << endl;
-	exit(0);
 }
