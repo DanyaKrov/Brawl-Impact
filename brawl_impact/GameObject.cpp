@@ -55,7 +55,6 @@ void GameObject::Update()
 		if (count == 2) {
 			count = 0;
 			isJump = false;
-
 			isFall = true;
 			step = -2;
 		}
