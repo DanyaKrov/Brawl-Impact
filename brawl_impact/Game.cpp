@@ -38,6 +38,12 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 
 
+	//music
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+	srand(time(0));
+	Mix_Music* music[] = { Mix_LoadMUS("music/caddilac.wav"), Mix_LoadMUS("music/tchaikovsky_piano_concerto_1.wav"),
+	Mix_LoadMUS("music/never_gonna.wav") };
+	Mix_PlayMusic(music[rand() % 3], -1);
 }
 
 void Game::handleEvevents()
@@ -83,4 +89,5 @@ void Game::clean()
 	Mix_CloseAudio();
 	SDL_Quit();
 	cout << "Game cleaned" << endl;
+	exit(0);
 }
