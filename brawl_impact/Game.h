@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "SDL_mixer.h"
+#include "Menu.h"
 #include <windows.h>
 using namespace std;
 
@@ -19,10 +20,13 @@ public:
 	void render();
 	void clean();
 
-	static SDL_Renderer *renderer;
+	void main_menu();
 
+	static SDL_Renderer *renderer;
 	bool running() {return isRunning;};
 private:
+	bool inMenu = TRUE;
+	int level = 0;
 	int count = 0;
 	bool isRunning;
 	SDL_Window* window;
