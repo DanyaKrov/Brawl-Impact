@@ -34,7 +34,7 @@ void GameObject::Update()
 	destRect.x = xpos;
 	destRect.y = ypos;
 	currentTime = round(SDL_GetTicks() / 1000);
-	if (!isX_const) {
+	if (!isX_const && xpos < 960) {
 		xpos += x_speed;
 	}
 	if (!isY_const && isFall) {
