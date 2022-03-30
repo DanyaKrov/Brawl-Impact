@@ -10,8 +10,7 @@ GameObject::GameObject(const char* texturesheet, int x, int y, bool isX_const, b
 	objTexture = TextureManager::LoadTexture(texturesheet); //load texture
 	xpos = x;
 	ypos = y;
-	int step = 0;
-	int count = 0;
+	int step = 1;
 	int coef = 1;
 
 	srcRect.h = 120;
@@ -37,32 +36,10 @@ void GameObject::Update()
 	if (!isX_const && xpos < 960) {
 		xpos += x_speed;
 	}
-	if (!isY_const && isFall) {
+	if (!isY_const) {
 		ypos += y_speed * coef;
 	}
-	if (isFall) {
-		if (step > -4) {
-			if (currentTime - lastTime == 1) {
-				lastTime = round(SDL_GetTicks() / 1000);
-				step--;
-			}
-		}
-	}
-	else if (isJump) {
-		if (currentTime - lastTime == 1) {
-			lastTime = round(SDL_GetTicks() / 1000);
-			step--;
-			count++;
-		}
-		if (count == 2) {
-			count = 0;
-			isJump = false;
-			isFall = true;
-			step = -2;
-		}
-
-	}
-	if (xpos > 2080 || ypos > 1084 || xpos < 0 || ypos < 0) {
+	if (xpos > 1920 || ypos > 1080 || xpos < 0 || ypos < 0) {
 		is_dead = true;
 	}
 	check_collision();
@@ -83,14 +60,19 @@ void GameObject::check_collision() {
 
 void GameObject::jump()
 {
-	if (!isY_const && isFall) {
+	if (!isY_const) {
 		startTime = round(SDL_GetTicks() / 1000);
 		lastTime = round(SDL_GetTicks() / 1000);
 		coef *= -1;
 		currentTime = startTime;
-		isFall = false;
-		isJump = true;
-		step = 4;
+		if (isJump) {
+			isJump = false;
+			step = 1;
+		}
+		else {
+			isJump = true;
+			step = 2;
+		}
 	}
 }
 
@@ -98,32 +80,11 @@ void GameObject::Render()
 {
 	switch (step)
 	{
-	case 0:
-		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_0.png");
-		break;
 	case 1:
-		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_-1.png");
-		break;
-	case 2:
-		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_-2.png");
-		break;
-	case 3:
-		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_-3.png");
-		break;
-	case 4:
-		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_-4.png");
-		break;
-	case -1:
-		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_1.png");
-		break;
-	case -2:
-		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_2.png");
-		break;
-	case -3:
 		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_3.png");
 		break;
-	case -4:
-		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_4.png");
+	case 2:
+		objTexture = TextureManager::LoadTexture("morgenshtern/frames/frame_-3.png");
 		break;
 	}
 	SDL_RenderCopy(Game::renderer, objTexture, NULL, &destRect);

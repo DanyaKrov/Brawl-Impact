@@ -22,7 +22,7 @@ bool Menu::Click(int xpos, int ypos)
 		return false;
 	}
 	if (settings[0] <= xpos && xpos <= settings[2] && settings[1] <= ypos && ypos <= settings[3]) {
-		return true;
+		background = TextureManager::LoadTexture("menus/skin_choice.png");
 	}
 	if (exit[0] <= xpos && xpos <= exit[2] && exit[1] <= ypos && ypos <= exit[3]) {
 		SDL_DestroyRenderer(Game::renderer);

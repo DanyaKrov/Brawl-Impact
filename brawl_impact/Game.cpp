@@ -53,6 +53,9 @@ void Game::handleEvevents()
 		case SDLK_r:
 			hero->restart();
 			break;
+		case SDLK_ESCAPE:
+			isRunning = false;
+			break;
 		}
 	}
 	if (inMenu && event.type == SDL_MOUSEBUTTONDOWN) 

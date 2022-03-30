@@ -15,8 +15,7 @@ int level1[11][20] = {
 };
 Map::Map()
 {
-	mainText = TextureManager::LoadTexture("C:\\Users\\Danya\\Desktop\\brawl_impact\\morgenshtern\\bg_4.png");
-
+	mainText = TextureManager::LoadTexture("morgenshtern/bg_4.png");
 	barrier = TextureManager::LoadTexture("morgenshtern/barrier_1.png");
 
 	LoadMap(level1);

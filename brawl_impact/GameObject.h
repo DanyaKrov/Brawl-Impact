@@ -27,7 +27,6 @@ public:
 private:
 	int xpos, ypos;
 	bool isX_const, isY_const;
-	bool isFall = true;
 	bool isJump = false;
 	bool is_dead = false;
 
@@ -37,12 +36,11 @@ private:
 	vector<string*> textures;
 
 	int currentTime, lastTime, startTime;
-	int step, count;
+	int step = 1;
 
 	//some physics
 	int x_speed = 3;
 	int y_speed = 5;
 	int time;
-	int boost = 1;
 	int coef = 1;
 };
