@@ -7,6 +7,7 @@
 
 GameObject::GameObject(const char* texturesheet, int x, int y, bool isX_const, bool isY_const)
 {
+	distance = 0;
 	objTexture = TextureManager::LoadTexture(texturesheet); //load texture
 	xpos = x;
 	ypos = y;
@@ -30,30 +31,32 @@ GameObject::GameObject(const char* texturesheet, int x, int y, bool isX_const, b
 
 void GameObject::Update()
 {
+	cout << xpos << endl;
 	destRect.x = xpos;
 	destRect.y = ypos;
 	currentTime = round(SDL_GetTicks() / 1000);
-	if (!isX_const && xpos < 960) {
+	if (xpos >= 4000)
+		xpos += 3;
+	else if ((!isX_const && xpos < 960)) {
 		xpos += x_speed;
 	}
 	if (!isY_const) {
 		ypos += y_speed * coef;
 	}
-	if (xpos > 1920 || ypos > 1080 || xpos < 0 || ypos < 0) {
+	if (xpos > 6000 || ypos > 1080 || xpos < 0 || ypos < 0) {
 		is_dead = true;
 	}
 	check_collision();
 	if (is_dead) {
 		x_speed = 0;
 		y_speed = 0;
+
 	}
 }
 
 void GameObject::check_collision() {
-	if (level1[ypos / 102][(xpos + 102) / 102] == 1 or
-		level1[(ypos + 102) / 102][xpos / 102] == 1 or
-		level1[(ypos + 102) / 102][(xpos + 102) / 102] == 1 or
-		level1[(ypos - 102) / 102][xpos / 102] == 1) {
+	cout << distance << endl;
+	if (level1[ypos / 120][(xpos + distance) / 120] == 1) {
 		is_dead = true;
 	}
 }
@@ -78,6 +81,9 @@ void GameObject::jump()
 
 void GameObject::Render()
 {
+	if ((distance + 1920) < 6000) //map moving if not end
+		distance += 3; 
+
 	switch (step)
 	{
 	case 1:
